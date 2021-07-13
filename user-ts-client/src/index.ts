@@ -1,33 +1,9 @@
-export interface Props {
-    x: number;
-    y: number;
-}
+export * from './core/resources';
 
-export class Value {
-    private value = 10
-    private props: Props = { x: 0, y: 0 };
+export * from './models/user/user';
 
-    getValue(): number {
-        return this.value;
-    }
+export * from './services/service-base';
+export * from './services/user/user-service.interface';
+export * from './services/user/user-service';
 
-    setValue(value: number): void {
-        this.value = value;
-    }
-
-    setProps(props: Props) {
-        this.props = props;
-    }
-
-    getProps(): Props {
-        return this.props;
-    }
-}
-
-const value = new Value();
-value.setValue(1000);
-value.getValue();
-
-const value1 = new Value()
-value1.setProps({ x: 1000, y: 1000 });
-value1.getProps();
+export * from './types/config';
