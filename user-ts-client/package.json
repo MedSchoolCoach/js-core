@@ -1,6 +1,11 @@
 {
-  "name": "user-js-client",
+  "name": "@medschoolcoach/user-js-client",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MedSchoolCoach/user-js-sdk",
+    "directory": "user-ts-client"
+  },
   "description": "A javascript browser library for user-api(https://github.com/MedSchoolCoach/user-api)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
