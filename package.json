@@ -1,0 +1,28 @@
+{
+  "name": "@medschoolcoach/user-js-client",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MedSchoolCoach/user-js-sdk"
+  },
+  "description": "A javascript browser library for user-api(https://github.com/MedSchoolCoach/user-api)",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build:js": "webpack --mode=development",
+    "build": "npm run lint && npm run build:js",
+    "lint": "eslint lib/**/*.js"
+  },
+  "author": "MedSchoolCoach",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
