@@ -15,10 +15,28 @@ interface User {
     additional?: any;
 }
 
+interface Purchase {
+    id?: string;
+    userId?: string;
+    productId?: string;
+    productName?: string;
+    quantity?: number;
+    orderId?: string;
+    cost?: number;
+    orderDate?: Date;
+    billingEmail?: string;
+    billingFirstName?: string;
+    billingLastName?: string;
+    studentFirstName?: string;
+    studentLastName?: string;
+    studentEmail?: string;
+}
+
 interface UserClientInstance {
     setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
+    getPurchases(): Promise<Purchase[]>;
 }
 
 interface UserClientStatic {
