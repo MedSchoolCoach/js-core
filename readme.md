@@ -1,20 +1,31 @@
 ### Nuxt
 #### Config
 
+nuxt.config.js
 ```
-  modules: [
+modules: [
     ...
-    '@medschoolcoach/user-js-client/nuxt'
+    '@medschoolcoach/user-js-sdk/nuxt'
     ...
-  ],
+],
 
-  ...
+...
 
-  userApiSdk: {
+userApiSdk: {
     baseUrl: 'http://localhost:8000'
-  }
+}
 
-  ...
+...
+```
+
+##### For TS
+
+tsconfig.json
+```
+"types": [
+    ...
+    "@medschoolcoach/user-js-sdk"
+]
 ```
 
 #### Using

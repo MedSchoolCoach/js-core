@@ -1,9 +1,9 @@
-export interface Config {
+interface Config {
     authToken: string;
     baseUrl: string;
 }
 
-export interface User {
+interface User {
     id?: string;
     email?: string;
     phone?: string;
@@ -15,16 +15,41 @@ export interface User {
     additional?: any;
 }
 
-export interface UserClientInstance {
+interface UserClientInstance {
     setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
 }
 
-export interface UserClientStatic {
+interface UserClientStatic {
     create(config: Config): UserClientInstance;
 }
 
 declare const userClient: UserClientStatic;
 
-export default userClient;
+declare module '@nuxt/vue-app' {
+    interface Context {
+        $userClient: UserClientInstance
+    }
+
+    interface NuxtAppOptions {
+        $userClient: UserClientInstance
+    }
+}
+
+// Nuxt 2.9+
+declare module '@nuxt/types' {
+    interface Context {
+        $userClient: UserClientInstance
+    }
+
+    interface NuxtAppOptions {
+        $userClient: UserClientInstance
+    }
+}
+
+declare module 'vue/types/vue' {
+    interface Vue {
+        $userClient: UserClientInstance
+    }
+}
