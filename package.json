@@ -6,7 +6,7 @@
     "url": "https://github.com/MedSchoolCoach/user-js-sdk"
   },
   "description": "A javascript browser library for user-api(https://github.com/MedSchoolCoach/user-api)",
-  "main": "dist/index.js",
+  "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "build:js": "webpack --mode=development",

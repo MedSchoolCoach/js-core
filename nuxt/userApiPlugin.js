@@ -1,6 +1,6 @@
-import userClient from '@medschoolcoach/user-js-sdk/lib/user-client'
+const userClient = require('@medschoolcoach/user-js-sdk')
 
-export default function (ctx, inject) {
+export default (ctx, inject) => {
     const options = JSON.parse('<%= JSON.stringify(options) %>')
 
     ctx.$userClient = userClient.create(options)

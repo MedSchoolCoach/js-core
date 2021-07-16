@@ -25,7 +25,7 @@ return /******/ (() => { // webpackBootstrap
   \******************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__(/*! ./lib/user-client */ \"./lib/user-client.js\");\r\n\n\n//# sourceURL=webpack://userClient/./index.js?");
+eval("const UserClient = __webpack_require__(/*! ./lib/core/UserClient */ \"./lib/core/UserClient.js\")\n\nconst userClient = {\n    create: function (config) {\n        return new UserClient(config)\n    }\n}\n\nmodule.exports = userClient\nmodule.exports.default = userClient\n\n\n//# sourceURL=webpack://userClient/./index.js?");
 
 /***/ }),
 
@@ -33,10 +33,9 @@ eval("module.exports = __webpack_require__(/*! ./lib/user-client */ \"./lib/user
 /*!********************************!*\
   !*** ./lib/core/UserClient.js ***!
   \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _resources__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./resources */ \"./lib/core/resources.js\");\n\r\n\r\n\r\nclass UserClient {\r\n    constructor(config) {\r\n        this.httpClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({\r\n            baseURL: config.baseUrl,\r\n            headers: {\r\n                Authorization: config.authToken,\r\n            },\r\n        });\r\n    }\r\n\r\n    get() {\r\n        return this.httpClient.get(_resources__WEBPACK_IMPORTED_MODULE_1__.default.user).then(res => res.data);\r\n    }\r\n\r\n    update(user) {\r\n        return this.httpClient.put(_resources__WEBPACK_IMPORTED_MODULE_1__.default.user, user).then(res => res.data);\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserClient);\r\n\n\n//# sourceURL=webpack://userClient/./lib/core/UserClient.js?");
+eval("const axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\")\nconst resources = __webpack_require__(/*! ./resources */ \"./lib/core/resources.js\")\n\nclass UserClient {\n    constructor(config) {\n        this.token = config.authToken\n\n        this.httpClient = axios.create({\n            baseURL: config.baseUrl,\n            headers: Object.assign({}, this._authHeader(this.token)),\n        });\n    }\n\n    /**\n     * Set new token before user requests\n     * Example: $user.setToken(...).get()\n     *\n     * @param token\n     * @returns {UserClient}\n     */\n    setToken(token) {\n        this.token = token\n        Object.assign(this.httpClient.defaults.headers, this._authHeader(token))\n\n        return this\n    }\n\n    get() {\n        return this.httpClient.get(resources.user).then(res => res.data);\n    }\n\n    update(user) {\n        return this.httpClient.put(resources.user, user).then(res => res.data);\n    }\n\n    /**\n     * Generate auth headers via token\n     *\n     * @param token\n     * @returns {{Authorization: string}}\n     * @private\n     */\n    _authHeader(token = null) {\n        return {\n            Authorization: `Bearer ${token ?? this.token}`,\n        }\n    }\n}\n\nmodule.exports = UserClient;\n\n\n//# sourceURL=webpack://userClient/./lib/core/UserClient.js?");
 
 /***/ }),
 
@@ -44,21 +43,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*!*******************************!*\
   !*** ./lib/core/resources.js ***!
   \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst resources = {\r\n    user: 'profile'\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (resources);\r\n\n\n//# sourceURL=webpack://userClient/./lib/core/resources.js?");
-
-/***/ }),
-
-/***/ "./lib/user-client.js":
-/*!****************************!*\
-  !*** ./lib/user-client.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _core_UserClient__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core/UserClient */ \"./lib/core/UserClient.js\");\n\r\n\r\nconst userClient = {\r\n    create: function (config) {\r\n        return new _core_UserClient__WEBPACK_IMPORTED_MODULE_0__.default(config);\r\n    }\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (userClient);\r\n\n\n//# sourceURL=webpack://userClient/./lib/user-client.js?");
+eval("const resources = {\n    user: 'profile'\n}\n\nmodule.exports = resources;\nmodule.exports.default = resources;\n\n\n//# sourceURL=webpack://userClient/./lib/core/resources.js?");
 
 /***/ }),
 
@@ -385,51 +372,10 @@ eval("\n\nvar bind = __webpack_require__(/*! ./helpers/bind */ \"./node_modules/
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __webpack_require__("./index.js");
 /******/ 	
 /******/ 	return __webpack_exports__;
