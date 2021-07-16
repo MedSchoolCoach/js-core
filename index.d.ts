@@ -9,10 +9,6 @@ interface PaginatedResultLink {
     url: string;
 }
 
-interface PaginationRequest {
-    page?: number;
-}
-
 interface PaginatedResult<T> {
     current_page: number;
     data: T[];
@@ -62,7 +58,7 @@ interface UserClientInstance {
     setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
-    getPurchases(requestParams?: PaginationRequest): Promise<PaginatedResult<Purchase>>;
+    getPurchases(page?: number): Promise<PaginatedResult<Purchase>>;
 }
 
 interface UserClientStatic {
