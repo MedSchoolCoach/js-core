@@ -25,7 +25,7 @@ return /******/ (() => { // webpackBootstrap
   \******************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const UserClient = __webpack_require__(/*! ./lib/core/UserClient */ \"./lib/core/UserClient.js\")\n\nconst userClient = {\n    create: function (config) {\n        return new UserClient(config)\n    }\n}\n\nmodule.exports = userClient\nmodule.exports.default = userClient\n\n\n//# sourceURL=webpack://userClient/./index.js?");
+eval("const UserClient = __webpack_require__(/*! ./lib/core/UserClient */ \"./lib/core/UserClient.js\")\r\n\r\nconst userClient = {\r\n    create: function (config) {\r\n        return new UserClient(config)\r\n    }\r\n}\r\n\r\nmodule.exports = userClient\r\nmodule.exports.default = userClient\r\n\n\n//# sourceURL=webpack://userClient/./index.js?");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ eval("const UserClient = __webpack_require__(/*! ./lib/core/UserClient */ \"./li
   \********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\")\nconst resources = __webpack_require__(/*! ./resources */ \"./lib/core/resources.js\")\n\nclass UserClient {\n    constructor(config) {\n        this.token = config.authToken\n\n        this.httpClient = axios.create({\n            baseURL: config.baseUrl,\n            headers: Object.assign({}, this._authHeader(this.token)),\n        });\n    }\n\n    /**\n     * Set new token before user requests\n     * Example: $user.setToken(...).get()\n     *\n     * @param token\n     * @returns {UserClient}\n     */\n    setToken(token) {\n        this.token = token\n        Object.assign(this.httpClient.defaults.headers, this._authHeader(token))\n\n        return this\n    }\n\n    get() {\n        return this.httpClient.get(resources.user).then(res => res.data);\n    }\n\n    update(user) {\n        return this.httpClient.put(resources.user, user).then(res => res.data);\n    }\n\n    /**\n     * Generate auth headers via token\n     *\n     * @param token\n     * @returns {{Authorization: string}}\n     * @private\n     */\n    _authHeader(token = null) {\n        return {\n            Authorization: `Bearer ${token ?? this.token}`,\n        }\n    }\n}\n\nmodule.exports = UserClient;\n\n\n//# sourceURL=webpack://userClient/./lib/core/UserClient.js?");
+eval("const axios = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\")\r\nconst resources = __webpack_require__(/*! ./resources */ \"./lib/core/resources.js\")\r\n\r\nclass UserClient {\r\n    constructor(config) {\r\n        this.token = config.authToken\r\n\r\n        this.httpClient = axios.create({\r\n            baseURL: config.baseUrl,\r\n            headers: Object.assign({}, this._authHeader(this.token)),\r\n        });\r\n    }\r\n\r\n    /**\r\n     * Set new token before user requests\r\n     * Example: $user.setToken(...).get()\r\n     *\r\n     * @param token\r\n     * @returns {UserClient}\r\n     */\r\n    setToken(token) {\r\n        this.token = token\r\n        Object.assign(this.httpClient.defaults.headers, this._authHeader(token))\r\n\r\n        return this\r\n    }\r\n\r\n    get() {\r\n        return this.httpClient.get(resources.user).then(res => res.data);\r\n    }\r\n\r\n    update(user) {\r\n        return this.httpClient.put(resources.user, user).then(res => res.data);\r\n    }\r\n\r\n    getPurchases(requestParams) {\r\n        return this.httpClient.get(\r\n            resources.purchase.getAll,\r\n            {\r\n                params: requestParams\r\n            }\r\n        ).then(res => res.data);\r\n    }\r\n\r\n    /**\r\n     * Generate auth headers via token\r\n     *\r\n     * @param token\r\n     * @returns {{Authorization: string}}\r\n     * @private\r\n     */\r\n    _authHeader(token = null) {\r\n        return {\r\n            Authorization: `Bearer ${token ?? this.token}`,\r\n        }\r\n    }\r\n}\r\n\r\nmodule.exports = UserClient;\r\n\n\n//# sourceURL=webpack://userClient/./lib/core/UserClient.js?");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ eval("const axios = __webpack_require__(/*! axios */ \"./node_modules/axios/inde
   \*******************************/
 /***/ ((module) => {
 
-eval("const resources = {\n    user: 'profile'\n}\n\nmodule.exports = resources;\nmodule.exports.default = resources;\n\n\n//# sourceURL=webpack://userClient/./lib/core/resources.js?");
+eval("const resources = {\r\n    user: 'profile',\r\n    purchase: {\r\n        getAll: 'purchases'\r\n    }\r\n}\r\n\r\nmodule.exports = resources;\r\nmodule.exports.default = resources;\r\n\n\n//# sourceURL=webpack://userClient/./lib/core/resources.js?");
 
 /***/ }),
 

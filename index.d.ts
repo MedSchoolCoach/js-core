@@ -3,6 +3,32 @@ interface Config {
     baseUrl: string;
 }
 
+interface PaginatedResultLink {
+    active: boolean;
+    label: string;
+    url: string;
+}
+
+interface PaginationRequest {
+    page?: number;
+}
+
+interface PaginatedResult<T> {
+    current_page: number;
+    data: T[];
+    first_page_url: string;
+    from: number;
+    last_page: number;
+    last_page_url: number;
+    links: PaginatedResultLink[];
+    next_page_url: string;
+    path: string;
+    per_page: number;
+    prev_page_url: string;
+    to: number;
+    total: number;
+}
+
 interface User {
     id?: string;
     email?: string;
@@ -36,7 +62,7 @@ interface UserClientInstance {
     setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
-    getPurchases(): Promise<Purchase[]>;
+    getPurchases(requestParams?: PaginationRequest): Promise<Purchase[]>;
 }
 
 interface UserClientStatic {
