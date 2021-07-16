@@ -62,7 +62,7 @@ interface UserClientInstance {
     setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
-    getPurchases(requestParams?: PaginationRequest): Promise<Purchase[]>;
+    getPurchases(requestParams?: PaginationRequest): Promise<PaginatedResult<Purchase>>;
 }
 
 interface UserClientStatic {
