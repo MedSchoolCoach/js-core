@@ -16,6 +16,7 @@ export interface User {
 }
 
 export interface UserClientInstance {
+    setToken(token: string): UserClientInstance;
     get(): Promise<User>;
     update(user: User): Promise<void>;
 }
