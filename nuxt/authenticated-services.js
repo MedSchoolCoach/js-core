@@ -18,7 +18,7 @@ export default async (ctx, inject) => {
 
   // http instance for user client
   const userHttpClient = axios.create({
-    baseURL: process.env.USER_API_BASE_URL ?? `https://user-api.medschoolcoach.com`,
+    baseURL: options.userApiBase ?? `https://user-api.medschoolcoach.com`,
     headers: Object.assign({}, setAuthHeader(token))
   })
 

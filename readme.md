@@ -7,8 +7,6 @@ https://docs.github.com/en/packages/working-with-a-github-packages-registry/work
 3. Add dependency to package.json `"@medschoolcoach/js-core": "^1.0.0"`
 4. `npm install`
 
-
-
 ### Methods
 ```
 userClient.get() // Get user
@@ -29,8 +27,12 @@ modules: [
 
 ...
 
-userApiSdk: {
-    baseUrl: 'http://localhost:8000'
+msc: {
+    userApiBase: process.env.USER_API_BASE_URL,
+    domain: process.env.AUTH0_DOMAIN,
+    audience: process.env.AUTH0_AUDIENCE,
+    clientId: process.env.AUTH0_CLIENT_ID,
+    appUrl: process.env.VUE_APP_URL
 }
 
 ...
@@ -47,6 +49,7 @@ tsconfig.json
 ```
 
 #### Using
+TODO revise
 
 ```js
 const token = 'token'
@@ -77,6 +80,7 @@ this.$userClient.setToken(token).get().then((user) => {
 ```
 
 ### ES6
+TODO revise
 
 ```
 import UserClient from '@medschoolcoach/user-js-sdk'
@@ -87,11 +91,11 @@ const user = await client.get()
 ```
 
 ### JS
-
+TODO revise
 ```
 <script src="./node_modules/@medschoolcoach/user-js-sdk/dist/index.js"></script>
 
-const client = userClient.create({authToken: '...', baseUrl: 'http://localhost:8000'})
+const client = userClient.create({authToken: '...', ap: 'http://localhost:8000'})
 
 client.get().then((user) => {
     this.user = user
