@@ -1,4 +1,4 @@
-name: @medschoolcoach/js-core
+name: MedSchoolCoach JS Core
 
 on:
   release:
