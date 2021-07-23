@@ -1,0 +1,31 @@
+{
+  "name": "@medschoolcoach/js-core",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MedSchoolCoach/js-core"
+  },
+  "description": "A javascript browser library for user-api(https://github.com/MedSchoolCoach/user-api)",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build:js": "webpack --mode=development",
+    "build": "npm run lint && npm run build:js",
+    "lint": "eslint lib/**/*.js",
+    "test": "jest"
+  },
+  "author": "MedSchoolCoach",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.0.6",
+    "typescript": "^4.3.5",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "moment": "^2.29.1"
+  }
+}
