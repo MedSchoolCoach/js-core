@@ -1,3 +1,14 @@
+### Installation
+1. Authenticate your local NPM with github
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages
+2. Add `.npmrc` to your local project containing
+`@medschoolcoach:registry=https://npm.pkg.github.com`
+   
+3. Add dependency to package.json `"@medschoolcoach/js-core": "^1.0.0"`
+4. `npm install`
+
+
+
 ### Methods
 ```
 userClient.get() // Get user
