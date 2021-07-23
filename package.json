@@ -27,5 +27,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "moment": "^2.29.1"
+  },
+  "publishConfig": {
+    "@MedSchoolCoach:registry": "https://npm.pkg.github.com"
   }
 }
