@@ -67,13 +67,30 @@ interface UserClientStatic {
 
 declare const userClient: UserClientStatic;
 
+interface AuthClientInstance {
+    loading: boolean;
+    isAuthenticated: boolean;
+    isAdmin: boolean;
+    user: {};
+    getUser(): void;
+    getToken(): Promise<string>;
+}
+
+interface AuthClientStatic {
+    create(config: {}): AuthClientInstance;
+}
+
+declare const authClient: AuthClientStatic;
+
 declare module '@nuxt/vue-app' {
     interface Context {
         $userClient: UserClientInstance
+        $authClient: AuthClientInstance
     }
 
     interface NuxtAppOptions {
         $userClient: UserClientInstance
+        $authClient: AuthClientInstance
     }
 }
 
