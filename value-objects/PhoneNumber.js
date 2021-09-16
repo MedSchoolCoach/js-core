@@ -18,13 +18,6 @@ class PhoneNumber {
   }
 
   /**
-   * @param value
-   */
-  set number (value) {
-    this._number = value
-  }
-
-  /**
    * @return {number|null}
    */
   get int () {

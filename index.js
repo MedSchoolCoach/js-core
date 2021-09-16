@@ -1,6 +1,6 @@
 const UserClient = require('./lib/core/UserClient');
 const AuthClient = require('./lib/core/auth');
-const PromiseHandler = require('./lib/core/PromiseHandler')
+const createPromiseHandler = require('./lib/core/PromiseHandler')
 
 const userClient = {
     create: function (config) {
@@ -18,7 +18,7 @@ const authClient = {
 const ex = {
     userClient,
     authClient,
-    PromiseHandler
+    createPromiseHandler,
 }
 
 module.exports = ex

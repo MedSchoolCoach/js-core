@@ -12,23 +12,15 @@ export default async (ctx, inject) => {
 
   // http instance for app services
   ctx.$httpClient = axios.create({
-    baseURL: process.env.API_BASE_URL,
+    baseURL: options.apiBase,
     headers: Object.assign({}, setAuthHeader(token)),
   })
 
-  // http instance for user client
-  const userHttpClient = axios.create({
-    baseURL: options.userApiBase ?? `https://user-api.medschoolcoach.com`,
-    headers: Object.assign({}, setAuthHeader(token))
-  })
-
-  // Create user client
-  ctx.$userClient = msc.userClient.create(userHttpClient)
+  ctx.$createPromiseHandler = msc.createPromiseHandler.bind(ctx.$httpClient)
 
   // Inject globals
-  inject('httpClient', ctx.$httpClient)
-  inject('userClient', ctx.$userClient)
   inject('authClient', ctx.$authClient)
+  inject('createPromiseHandler', ctx.$createPromiseHandler)
 }
 
 /**

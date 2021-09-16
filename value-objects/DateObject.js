@@ -12,14 +12,6 @@ class DateObject {
     return this._date
   }
 
-  set date (date) {
-    if (date) {
-      this._date = new Date(date)
-    } else {
-      this._date = null
-    }
-  }
-
   /**
    * @return {string|null}
    */

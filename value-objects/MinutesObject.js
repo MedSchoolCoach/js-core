@@ -13,14 +13,6 @@ class MinutesObject {
   }
 
   /**
-   * @param {Number} val
-   * @return {*}
-   */
-  set minutes (val) {
-    return (this._minutes = val)
-  }
-
-  /**
    * @return {string}
    */
   get time () {
