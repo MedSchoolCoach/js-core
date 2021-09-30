@@ -2,7 +2,7 @@ const moment = require('moment')
 
 class DateObject {
   constructor (date = new Date()) {
-    this.date = date
+    this._date = date
   }
 
   /**
@@ -38,11 +38,11 @@ class DateObject {
    * @return {string|null}
    */
   get noTime () {
-    if (!this._date || isNaN(this._date.getTime())) {
+    try {
+      return this._date.toISOString().substr(0, 10)
+    } catch {
       return null
     }
-
-    return this._date.toISOString().substr(0, 10)
   }
 
   set noTime (val) {
