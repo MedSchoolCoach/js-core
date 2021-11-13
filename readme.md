@@ -25,7 +25,7 @@ nuxt.config.js
 ```
 modules: [
     ...
-    '@medschoolcoach/user-js-sdk/nuxt'
+    '@medschoolcoach/js-core/nuxt'
     ...
 ],
 
@@ -100,7 +100,7 @@ this.$userClient.setToken(token).get().then((user) => {
 TODO revise
 
 ```
-import UserClient from '@medschoolcoach/user-js-sdk'
+import UserClient from '@medschoolcoach/js-core'
 
 const client = UserClient.create({authToken: '...', baseUrl: 'http://localhost:8000'})
 
@@ -112,7 +112,7 @@ const user = await client.get()
 TODO revise
 
 ```
-<script src="./node_modules/@medschoolcoach/user-js-sdk/dist/index.js"></script>
+<script src="./node_modules/@medschoolcoach/js-core-sdk/dist/index.js"></script>
 
 const client = userClient.create({authToken: '...', ap: 'http://localhost:8000'})
 
