@@ -9,11 +9,10 @@ export default async (ctx, inject) => {
   await ctx.$authClient.init()
   const token = await ctx.$authClient.getToken()
 
-
   // http instance for app services
   ctx.$httpClient = axios.create({
     baseURL: options.apiBase,
-    headers: Object.assign({}, setAuthHeader(token)),
+    headers: Object.assign({}, setAuthHeader(token))
   })
 
   ctx.$createPromiseHandler = msc.createPromiseHandler.bind(ctx.$httpClient)
@@ -29,6 +28,6 @@ export default async (ctx, inject) => {
  */
 function setAuthHeader (token) {
   return {
-    Authorization: `Bearer ${token ?? this.token}`,
+    Authorization: `Bearer ${token ?? this.token}`
   }
 }

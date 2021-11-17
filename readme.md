@@ -76,7 +76,7 @@ const user = await this.$userClient.get()
 
 // or
 
-this.$userClient.get().then((user) => {
+this.$userClient.get().then(user => {
   this.user = user
 })
 ```
@@ -90,9 +90,12 @@ const user = await this.$userClient.setToken(token).get()
 
 // or
 
-this.$userClient.setToken(token).get().then((user) => {
-  this.user = user
-})
+this.$userClient
+  .setToken(token)
+  .get()
+  .then(user => {
+    this.user = user
+  })
 ```
 
 ### ES6

@@ -1,0 +1,8 @@
+dist
+.nuxt
+node_modules
+package.json
+package-lock.json
+index.d.ts // TODO add TS support
+webpack.config.js
+index.d.ts

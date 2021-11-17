@@ -16,7 +16,10 @@ async function checkAuth (ctx, inject) {
 
 async function onAuthReady (ctx, inject) {
   if (!ctx.$authClient.isAuthenticated) {
-    localStorage.setItem(locationKey, encodeURI(window.location.pathname + window.location.search))
+    localStorage.setItem(
+      locationKey,
+      encodeURI(window.location.pathname + window.location.search)
+    )
     return ctx.$authClient.login()
   }
 
@@ -28,7 +31,10 @@ async function onAuthReady (ctx, inject) {
 
 function maybeRedirect (ctx) {
   const redirect = decodeURI(localStorage.getItem(locationKey))
-  if (redirect && 'null' !== redirect && redirect !== window.location.pathname + window.location.search
+  if (
+    redirect &&
+    redirect !== 'null' &&
+    redirect !== window.location.pathname + window.location.search
   ) {
     localStorage.removeItem(locationKey)
     ctx.app.router.push(redirect)
