@@ -15,11 +15,22 @@ export default async (ctx, inject) => {
     headers: Object.assign({}, setAuthHeader(token))
   })
 
+  // User API profile service
+  ctx.$profileService = msc.services.profileService(
+    msc.createPromiseHandler,
+    axios.create({
+      baseURL: options.userApiBase,
+      headers: Object.assign({}, setAuthHeader(token))
+    })
+  )
+
+  // promise handler for general use
   ctx.$createPromiseHandler = msc.createPromiseHandler.bind(ctx.$httpClient)
 
   // Inject globals
   inject('authClient', ctx.$authClient)
   inject('createPromiseHandler', ctx.$createPromiseHandler)
+  inject('profileService', ctx.$profileService)
 }
 
 /**
