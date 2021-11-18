@@ -1,13 +1,8 @@
-const UserClient = require('./lib/core/UserClient')
 const AuthClient = require('./lib/core/auth')
 const createPromiseHandler = require('./lib/core/PromiseHandler')
 const services = require('./lib/services/services')
-
-const userClient = {
-  create: function (config) {
-    return new UserClient(config)
-  }
-}
+const models = require('./lib/models')
+const helpers = require('./lib/helpers')
 
 const authClient = {
   create: function (config) {
@@ -16,10 +11,11 @@ const authClient = {
 }
 
 const ex = {
-  userClient,
   authClient,
   createPromiseHandler,
-  services
+  services,
+  models,
+  helpers
 }
 
 module.exports = ex
