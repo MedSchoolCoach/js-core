@@ -1,8 +1,8 @@
 const AuthClient = require('./lib/core/auth')
 const createPromiseHandler = require('./lib/core/PromiseHandler')
 const services = require('./lib/services/services')
-const models = require('./lib/models')
-const helpers = require('./lib/helpers')
+const models = require('./lib/models/models')
+const helpers = require('./lib/helpers/helpers')
 
 const authClient = {
   create: function (config) {
