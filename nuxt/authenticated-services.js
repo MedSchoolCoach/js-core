@@ -16,7 +16,7 @@ export default async (ctx, inject) => {
   })
 
   // User API profile service
-  ctx.$profileService = msc.services.profileService(
+  ctx.$profileService = msc.services.profile(
     msc.createPromiseHandler,
     axios.create({
       baseURL: options.userApiBase,
